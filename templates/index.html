@@ -52,6 +52,19 @@
         </header>
 
         <main class="site-content">
+            <div id="modal-01" class="modal">
+                <div class="modal-inner"><button class="modal-close modal-close-trigger"
+                        aria-label="close"></button>
+                    <div class="modal-content">
+                        <div class="center-content">
+                            <h3 class="mt-16 mb-8">Ishni boshlash uchun biz bilan bog'laning!</h3>
+                            <p class="text-sm">Biz sizga o'z xizmatlaimizni taklif etamiz. Biz bilan ishlash sizning kompaniyangizga qulaylik va samaradorlikni taqdim qiladi. Bunday imkoniyatni qo'ldan boy bermang!</p>
+                        </div>
+                        <div class="center-content mt-24"><a class="button button-primary button-block text-xs modal-close-trigger"
+                                aria-label="close" href="#contact">Tushunarli</a></div>
+                    </div>
+                </div>
+            </div>
             <section class="hero section has-bg-color invert-color">
                 <div class="container">
                     <div class="hero-inner section-inner">
@@ -66,20 +79,20 @@
                                         yechimlar orqali biznesingizni tezkor o'sishga olib chiqishda yordam beramiz.
                                     </p>
                                     <div class="button-group">
-                                        <a class="button button-primary button-wide-mobile" href="#">Ishni boshlash</a>
-                                        <a class="button button-dark button-wide-mobile" href="#">Ko'proq bilish</a>
+                                        <a class="button button-primary button-wide-mobile modal-trigger" aria-controls="modal-01" href="#contact">Ishni boshlash</a>
+                                        <a class="button button-dark button-wide-mobile" href="#about-us">Ko'proq bilish</a>
                                     </div>
                                 </div>
                                 <div
                                     class="hero-figure split-item-image split-item-image-fill illustration-element-01 reveal-from-bottom">
-                                    <a class="modal-trigger" aria-controls="modal-01"
+                                    <a class="modal-trigger" aria-controls="modal-02"
                                         data-video="https://player.vimeo.com/video/174002812" data-video-tag="iframe"
                                         href="#">
                                         <img src="{% static 'images/video-placeholder.jpg' %}" alt="Video" width="528"
                                             height="396">
                                     </a>
                                 </div>
-                                <div id="modal-01" class="modal modal-video">
+                                <div id="modal-02" class="modal modal-video">
                                     <div class="modal-inner">
                                         <div class="responsive-video">
                                             <iframe src="#" frameborder="0" webkitAllowFullScreen mozallowfullscreen
@@ -214,7 +227,7 @@
             </section>
 
 
-            <section class="section">
+            <section class="section" id="about-us">
                 <div class="container">
                     <div class="section-inner">
                         <div class="container text-center">
@@ -542,7 +555,7 @@
                             {% for portfolio in portfolios %}
                             <div class="split-item">
                                 <div class="split-item-content center-content-mobile">
-                                    <h3 class="mt-0 mb-16 reveal-from-bottom" data-reveal-container=".split-item"><a href="{{ portfolio.url }}"> {{ portfolio.title }} </a></h3>
+                                    <h3 class="mt-0 mb-16 reveal-from-bottom" data-reveal-container=".split-item"><a style="text-decoration: none;" href="{{ portfolio.url }}"> {{ portfolio.title }} </a></h3>
                                     <p class="m-0 reveal-from-bottom" data-reveal-delay="100"
                                         data-reveal-container=".split-item">{{ portfolio.description }}</p>
                                 </div>
@@ -558,7 +571,7 @@
                                         Hozircha bajarilgan ishlar mavjud emas!</h3>
                                     <p class="m-0 reveal-from-bottom" data-reveal-delay="100"
                                         data-reveal-container=".split-item">Tez orada ishlar saytga yuklanadi va siz u haqida fikr va mulohazalarizni qoldirishingiz mumkin bo'ladi.</p>
-                                </div>                                
+                                </div>
                                 <div class="split-item-image split-item-image-fill reveal-scale-up"
                                     data-reveal-container=".split-item" data-reveal-delay="200"><img class="has-shadow"
                                         src="{% static 'images/features-split-image-01.png' %}"
@@ -592,11 +605,10 @@
                                         <p class="text-sm mb-0">{{ comment.content }}</p>
                                     </div>
                                     <div class="testimonial-item-footer text-xs fw-500 mt-32 mb-0 has-top-divider"><span
-                                            class="testimonial-item-name">{{ comment.user_name }} </span><span
-                                            class="text-color-low">/ </span></div>
+                                            class="testimonial-item-name">{{ comment.user_name }} </span></div>
                                 </div>
                             </div>
-                            {% empty %}                            
+                            {% empty %}
                             <div class="tiles-item reveal-from-bottom ta-c" data-reveal-container=".tiles-wrap"
                                 data-reveal-delay="400">
                                 <h3>
@@ -643,7 +655,7 @@
                                 <div class="tiles-item-inner">
                                     <div class="team-item-header">
                                         <div class="team-item-image mb-24"><img
-                                                src="{{ dev.image.url }}" alt="Developer photo"
+                                                src="{% if dev.image %} {{ dev.image.url }} {% else %} {% static 'images/developer.jpg' %} {% endif %}" alt="Developer photo"
                                                 width="180" height="180"></div>
                                     </div>
                                     <div class="team-item-content">
@@ -705,7 +717,7 @@
                                 </div>
                             </article>
                             {% empty %}
-                            <article class="tiles-item reveal-from-bottom ta-c">                                
+                            <article class="tiles-item reveal-from-bottom ta-c">
                                 <h3 class="h4 mt-0 mb-8">
                                     Hozircha yangiliklar mavjud emas!
                                 </h3>

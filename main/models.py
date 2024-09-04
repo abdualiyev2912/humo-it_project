@@ -18,10 +18,10 @@ class PortfolioImage(models.Model):
 
 class Developer(models.Model):
     name = models.CharField(max_length=100)
-    bio = models.TextField()
+    bio = models.TextField(null=True, blank=True)
     skills = models.CharField(max_length=255)
-    image = models.ImageField(upload_to="dev_images/")
-    experience = models.IntegerField(help_text="Years of experience")
+    image = models.ImageField(upload_to="dev_images/", null=True, blank=True)
+    experience = models.IntegerField()
 
     def __str__(self):
         return self.name
